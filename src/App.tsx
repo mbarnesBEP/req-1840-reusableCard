@@ -41,7 +41,7 @@ const FAKEDATA = [
 
 function App() {
   const starIcon = (
-    <ActionIcon onClick={() => console.log('clickedIcon')} sx={{
+    <ActionIcon onClick={() => alert('clicked on the star icon')} sx={{
       '&:hover': { background: 'transparent' }
     }}>
       <FontAwesomeIcon data-testid='starIcon' size='lg' icon={faStar} />
@@ -75,6 +75,7 @@ function App() {
       color='red'
       radius='xl'
       size='xl'
+      onClick={() => alert('clicked on avitar icon')}
     >
       <Text size={15} weight={500} color='white'>
         CAR
@@ -97,6 +98,7 @@ function App() {
 
   const bodyClick = (value: string) => {
     console.log('clicked: ', value)
+    alert('clicked card body')
   }
 
   const cardFooter = <Text>This is a footer</Text>
