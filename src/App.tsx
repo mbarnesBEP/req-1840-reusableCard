@@ -44,8 +44,8 @@ function App() {
   }
   const titleLeftIcon = <FontAwesomeIcon onClick={() => console.log('clickedIcon')} data-testid='titleLeftIcon' icon={faStar} />
   const titleRightIcon = <FontAwesomeIcon icon={faCircleInfo} style={{ color: "#CF3F7C" }} />
-  const trendUpIcon = <FontAwesomeIcon icon={faArrowTrendUp} style={{ color: "#6ee62d" }} />
-  const trendDownIcon = <FontAwesomeIcon icon={faArrowTrendDown} style={{ color: "#DC3545" }} />
+  const trendUpIcon = <FontAwesomeIcon icon={faArrowTrendUp} style={{ color: "#6ee62d", height: '27px', width: '32px' }} />
+  const trendDownIcon = <FontAwesomeIcon icon={faArrowTrendDown} style={{ color: "#DC3545", height: '27px', width: '32px' }} />
   const warningIcon = <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: "#FF9518" }} />
   const errorIcon = <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: "#F61D1D" }} />
   const waitingIcon = <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "#49A4DA" }} />
@@ -78,11 +78,11 @@ function App() {
         <MainCard
           leftIconClick={leftIconClick}
           titleLeftIcon={titleLeftIcon}
-          title={'File Parsing Errors'}
+          title={'loooooooong'}
           dropMenu={menu}
           bodyLeftIcon={errorIcon}
           handleBodyClick={bodyClick}
-          bodyText={'255'}
+          bodyText={'Looooooooong'}
           bodyRightIcon={trendDownIcon}
         />
       </Center>

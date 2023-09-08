@@ -12,11 +12,13 @@ interface props {
   bodyLeftIcon?: ReactElement
   handleBodyClick?: (value: string) => void
   bodyText?: string
+  bodyTextSize?: string
   bodyRightIcon?: ReactElement
   footer?: ReactElement
   footerPosition?: GroupPosition
   cardWidth?: string
   cardHeight?: string
+  withBorder?: boolean
 }
 
 const useStyles = createStyles(() => ({
@@ -38,39 +40,50 @@ const useStyles = createStyles(() => ({
  * @param {ReactElement} bodyLeftIcon Icon to be displayed on the left side of the body of the card
  * @param {Function} handleBodyClick Action for when body of the card is clicked
  * @param {string} bodyText Text to display in the card
+ * @param {string} bodyTextSize Text size for body text default to 2rem
  * @param {ReactElement} bodyRightIcon Icon to be displayed on the right side of the body of the card
  * @param {ReactElement} footer jsx element to display in the footer of the card
  * @param {GroupPosition} footerPosition Defines justify-content property - i.e (left, right, center, apart) 
  * @param {string} cardHeight setHeight for card default to 110px
  * @param {string} cardWidth set width for card default to 520px
+ * @param {boolean} withBorder add boarder to card default to true
  */
-const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMenu, children, bodyLeftIcon, handleBodyClick, bodyText, bodyRightIcon, footer, footerPosition, cardHeight = '110px', cardWidth = '250px' }: props) => {
+const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMenu, children, bodyLeftIcon, handleBodyClick, bodyText, bodyTextSize = '2rem', bodyRightIcon, footer, footerPosition, cardHeight = '110px', cardWidth = '250px', withBorder = true }: props) => {
   const { classes } = useStyles()
   const titleRef = useRef<null | HTMLDivElement>(null)
-  const [isOverFlown, setIsOverFlown] = useState(false)
+  const bodyRef = useRef<null | HTMLDivElement>(null)
+  const [isTitleOverFlown, setTitleIsOverFlown] = useState(false)
+  const [isBodyOverFlown, setBodyIsOverFlown] = useState(false)
 
   useEffect(() => {
     const titleElement = titleRef.current
+    const bodyTextElement = bodyRef.current
     if (titleElement) {
-      setIsOverFlown(titleElement.scrollWidth > titleElement.clientWidth)
+      setTitleIsOverFlown(titleElement.scrollWidth > titleElement.clientWidth)
     }
-  }, [])
+    if (bodyTextElement) {
+      setBodyIsOverFlown(bodyTextElement.scrollWidth > bodyTextElement.clientWidth)
+    }
+  }, [titleRef.current])
+
   return (
-    <Card shadow="sm" padding="sm" radius="md" m='md' withBorder px='lg' w={cardWidth} h={cardHeight}>
+    <Card shadow="sm" padding="sm" radius="md" m='md' withBorder={withBorder} px='lg' w={cardWidth} h={cardHeight}>
       <Card.Section>
-        <Group noWrap position={!title ? 'apart' : undefined}>
+        <Group position={!title ? 'apart' : undefined}>
           {titleLeftIcon &&
-            <ActionIcon onClick={() => leftIconClick && leftIconClick('value')}>
+            <ActionIcon component="span" mx='0px' onClick={() => leftIconClick && leftIconClick('value')}>
               {titleLeftIcon}
             </ActionIcon>
           }
           {title &&
-            <Tooltip label={title} data-testid='tooltip' disabled={!isOverFlown}>
+            <Tooltip label={title} data-testid='tooltip' disabled={!isTitleOverFlown}>
               <Text fz="1rem" c='dimmed' data-testid='title' truncate ref={titleRef}>{title}</Text>
             </Tooltip>
           }
           {titleRightIcon}
-          {dropMenu}
+          <Card.Section ml='auto'>
+            {dropMenu}
+          </Card.Section>
         </Group>
       </Card.Section>
       <Card.Section
@@ -85,7 +98,9 @@ const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMen
         <Card.Section>
           <Group mt='md' mb='xs' position="left" mx='md' noWrap>
             {bodyLeftIcon && bodyLeftIcon}
-            <Text fz="2rem">{bodyText}</Text>
+            <Tooltip label={bodyText} data-testid='tooltip' disabled={!isBodyOverFlown}>
+              <Text fz={bodyTextSize} truncate ref={bodyRef}>{bodyText}</Text>
+            </Tooltip>
             {bodyRightIcon && bodyRightIcon}
           </Group>
         </Card.Section>
