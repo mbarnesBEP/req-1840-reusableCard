@@ -76,7 +76,7 @@ const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMen
             </ActionIcon>
           }
           {title &&
-            <Tooltip label={title} data-testid='tooltip' disabled={!isTitleOverFlown}>
+            <Tooltip label={title} data-testid='tooltip' color="#636363" disabled={!isTitleOverFlown}>
               <Text fz="1rem" c='dimmed' data-testid='title' truncate ref={titleRef}>{title}</Text>
             </Tooltip>
           }
@@ -98,7 +98,7 @@ const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMen
         <Card.Section>
           <Group mt='md' mb='xs' position="left" mx='md' noWrap>
             {bodyLeftIcon && bodyLeftIcon}
-            <Tooltip label={bodyText} data-testid='tooltip' disabled={!isBodyOverFlown}>
+            <Tooltip label={bodyText} data-testid='body-tooltip' color="#636363" disabled={!isBodyOverFlown}>
               <Text fz={bodyTextSize} truncate ref={bodyRef}>{bodyText}</Text>
             </Tooltip>
             {bodyRightIcon && bodyRightIcon}
