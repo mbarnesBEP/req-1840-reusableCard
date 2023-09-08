@@ -186,12 +186,14 @@ function App() {
         <MainCard
           titleLeftIcon={carIcon}
           titleRightIcon={starIcon}
+          cardClickHandler={bodyClick}
           bodyText='Cost Avoidance Report'
           bodyTextSize='1rem'
         />
         <MainCard
           titleLeftIcon={bwiIcon}
           titleRightIcon={starIcon}
+          cardClickHandler={bodyClick}
           bodyText='BI WorldWide Invoices Report'
           bodyTextSize='1rem'
         />
