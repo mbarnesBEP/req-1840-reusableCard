@@ -1,16 +1,24 @@
 import React, { useRef, useState, useEffect, ReactElement } from "react"
-import { Card, Text, Group, Tooltip, ActionIcon, createStyles, GroupPosition } from '@mantine/core'
+import { Card, Text, Group, Tooltip, ActionIcon, createStyles, GroupPosition, Menu } from '@mantine/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 
+
+interface menuItemProps {
+  title: string
+  onClick: () => void
+  color?: string
+}
 
 interface props {
   title?: string
   titleLeftIcon?: ReactElement
-  leftIconClick?: (value: string) => void
+  leftIconClickHandler?: (value: string) => void
   titleRightIcon?: ReactElement
-  dropMenu?: ReactElement
+  dropMenuItems?: Array<menuItemProps>
   children?: ReactElement
   bodyLeftIcon?: ReactElement
-  handleBodyClick?: (value: string) => void
+  bodyClickHandler?: (value: string) => void
   bodyText?: string
   bodyTextSize?: string
   bodyRightIcon?: ReactElement
@@ -30,30 +38,66 @@ const useStyles = createStyles(() => ({
 }))
 
 /**
- * Description
+ *  Reusable generic card component for Reports/Search Landing and Dashboard pages
  * @param {string} title title for the card
  * @param {ReactElement} titleLeftIcon Icon to be displayed to the left side of the title
- * @param {Function} leftIconClick Action for when the left title icon is clicked 
+ * @param {Function} leftIconClickHandler Action for when the left title icon is clicked 
  * @param {ReactElement} titleRightIcon Icon to be displayed to the left side of the title
- * @param {ReactElement} dropMenu drop menu to display on the top of the card
+ * @param {Array} dropMenuItems drop menu items to display in the optional drop menu
  * @param {ReactElement} children
  * @param {ReactElement} bodyLeftIcon Icon to be displayed on the left side of the body of the card
- * @param {Function} handleBodyClick Action for when body of the card is clicked
+ * @param {Function} bodyClickHandler Action for when body of the card is clicked
  * @param {string} bodyText Text to display in the card
  * @param {string} bodyTextSize Text size for body text default to 2rem
  * @param {ReactElement} bodyRightIcon Icon to be displayed on the right side of the body of the card
  * @param {ReactElement} footer jsx element to display in the footer of the card
  * @param {GroupPosition} footerPosition Defines justify-content property - i.e (left, right, center, apart) 
- * @param {string} cardHeight setHeight for card default to 110px
+ * @param {string} cardHeight set height for card default to 110px
  * @param {string} cardWidth set width for card default to 520px
  * @param {boolean} withBorder add boarder to card default to true
  */
-const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMenu, children, bodyLeftIcon, handleBodyClick, bodyText, bodyTextSize = '2rem', bodyRightIcon, footer, footerPosition, cardHeight = '110px', cardWidth = '250px', withBorder = true }: props) => {
+
+const MainCard = ({
+  title,
+  titleLeftIcon,
+  leftIconClickHandler,
+  titleRightIcon,
+  dropMenuItems,
+  children,
+  bodyLeftIcon,
+  bodyClickHandler,
+  bodyText,
+  bodyTextSize = '2rem',
+  bodyRightIcon,
+  footer,
+  footerPosition,
+  cardHeight = '110px',
+  cardWidth = '250px',
+  withBorder = true }: props) => {
   const { classes } = useStyles()
   const titleRef = useRef<null | HTMLDivElement>(null)
   const bodyRef = useRef<null | HTMLDivElement>(null)
   const [isTitleOverFlown, setTitleIsOverFlown] = useState(false)
   const [isBodyOverFlown, setBodyIsOverFlown] = useState(false)
+  let dropMenu
+
+  if (dropMenuItems) {
+    dropMenu = (
+      <Menu withinPortal position="bottom-end" shadow="sm">
+        <Menu.Target>
+          <ActionIcon>
+            <FontAwesomeIcon icon={faEllipsisVertical} />
+          </ActionIcon>
+        </Menu.Target>
+        <Menu.Dropdown>
+          {dropMenuItems.map((item) => (
+            <Menu.Item onClick={item.onClick} key={item.title} color={item.color}>{item.title}</Menu.Item>
+          ))}
+        </Menu.Dropdown>
+      </Menu>
+    )
+  }
+
 
   useEffect(() => {
     const titleElement = titleRef.current
@@ -64,30 +108,32 @@ const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMen
     if (bodyTextElement) {
       setBodyIsOverFlown(bodyTextElement.scrollWidth > bodyTextElement.clientWidth)
     }
-  }, [titleRef.current])
+  }, [])
 
   return (
-    <Card shadow="sm" padding="sm" radius="md" m='md' withBorder={withBorder} px='lg' w={cardWidth} h={cardHeight}>
+    <Card radius="md" m='md' withBorder={withBorder} w={cardWidth} h={cardHeight}>
       <Card.Section>
-        <Group position={!title ? 'apart' : undefined}>
+        <Group position={!title ? 'apart' : undefined} noWrap id='card-header-group' px='md' pt='md' pb='md'>
           {titleLeftIcon &&
-            <ActionIcon component="span" mx='0px' onClick={() => leftIconClick && leftIconClick('value')}>
+            <ActionIcon component="span" mx='0px' onClick={() => leftIconClickHandler && leftIconClickHandler('value')}>
               {titleLeftIcon}
             </ActionIcon>
           }
           {title &&
-            <Tooltip label={title} data-testid='tooltip' color="#636363" disabled={!isTitleOverFlown}>
+            <Tooltip.Floating label={title} multiline data-testid='tooltip' color="gray" disabled={!isTitleOverFlown}>
               <Text fz="1rem" c='dimmed' data-testid='title' truncate ref={titleRef}>{title}</Text>
-            </Tooltip>
+            </Tooltip.Floating>
           }
           {titleRightIcon}
-          <Card.Section ml='auto'>
-            {dropMenu}
-          </Card.Section>
+          {dropMenu &&
+            <Card.Section ml='auto'>
+              {dropMenu}
+            </Card.Section>
+          }
         </Group>
       </Card.Section>
       <Card.Section
-        onClick={() => handleBodyClick && handleBodyClick('Value')}
+        onClick={() => bodyClickHandler && bodyClickHandler('Value')}
         className={classes.cardValueGroup}
         data-testid='card-body'>
         {children &&
@@ -96,16 +142,15 @@ const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMen
           </Card.Section>
         }
         <Card.Section>
-          <Group mt='md' mb='xs' position="left" mx='md' noWrap>
+          <Group position="left" mx='md' px='md' noWrap>
             {bodyLeftIcon && bodyLeftIcon}
-            <Tooltip label={bodyText} data-testid='body-tooltip' color="#636363" disabled={!isBodyOverFlown}>
+            <Tooltip.Floating label={bodyText} multiline data-testid='body-tooltip' color="gray" disabled={!isBodyOverFlown}>
               <Text fz={bodyTextSize} truncate ref={bodyRef}>{bodyText}</Text>
-            </Tooltip>
+            </Tooltip.Floating>
             {bodyRightIcon && bodyRightIcon}
           </Group>
         </Card.Section>
       </Card.Section>
-
       {footer &&
         <Card.Section>
           <Group position={footerPosition}>
@@ -113,7 +158,6 @@ const MainCard = ({ title, titleLeftIcon, leftIconClick, titleRightIcon, dropMen
           </Group>
         </Card.Section>
       }
-
     </Card>
   )
 }

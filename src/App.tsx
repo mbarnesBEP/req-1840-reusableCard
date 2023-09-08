@@ -4,7 +4,8 @@ import './App.css'
 import MainCard from './MainCard'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-regular-svg-icons'
 
 const FAKEDATA = [
   {
@@ -39,32 +40,54 @@ const FAKEDATA = [
   }]
 
 function App() {
-  const leftIconClick = (item: string) => {
-    console.log('Clicked', item)
-  }
-  const titleLeftIcon = <FontAwesomeIcon onClick={() => console.log('clickedIcon')} data-testid='titleLeftIcon' icon={faStar} />
+  const starIcon = <FontAwesomeIcon onClick={() => console.log('clickedIcon')} data-testid='starIcon' size='lg' icon={faStar} />
   const titleRightIcon = <FontAwesomeIcon icon={faCircleInfo} style={{ color: "#CF3F7C" }} />
   const trendUpIcon = <FontAwesomeIcon icon={faArrowTrendUp} style={{ color: "#6ee62d", height: '27px', width: '32px' }} />
   const trendDownIcon = <FontAwesomeIcon icon={faArrowTrendDown} style={{ color: "#DC3545", height: '27px', width: '32px' }} />
-  const warningIcon = <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: "#FF9518" }} />
-  const errorIcon = <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: "#F61D1D" }} />
-  const waitingIcon = <FontAwesomeIcon icon={faCircleExclamation} style={{ color: "#49A4DA" }} />
+  const warningIcon = <FontAwesomeIcon icon={faTriangleExclamation}
+    style={{
+      width: '28px',
+      height: '24.5px',
+      color: "#FF9518"
+    }} />
+  const errorIcon = <FontAwesomeIcon icon={faTriangleExclamation}
+    style={{
+      width: '28px',
+      height: '24.5px',
+      color: "#F61D1D"
+    }} />
+  const waitingIcon = <FontAwesomeIcon icon={faCircleExclamation}
+    style={{
+      width: '28px',
+      height: '24.5px',
+      color: "#49A4DA"
+    }} />
 
-  const menu =
-    <Menu withinPortal position="bottom-end" shadow="sm">
-      <Menu.Target>
-        <ActionIcon>
-          <FontAwesomeIcon icon={faEllipsisVertical} />
-        </ActionIcon>
-      </Menu.Target>
-      <Menu.Dropdown>
-        <Menu.Item>Test Item 1</Menu.Item>
-        <Menu.Item>Test Item 2</Menu.Item>
-        <Menu.Item color="red">
-          Delete all
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
+  const carIcon = (
+    <ActionIcon
+      variant='filled'
+      color='red'
+      radius='xl'
+      size='xl'
+    >
+      <Text size={15} weight={500} color='white'>
+        CAR
+      </Text>
+    </ActionIcon>
+  )
+
+  const bwiIcon = (
+    <ActionIcon
+      variant='filled'
+      color='blue'
+      radius='xl'
+      size='xl'
+    >
+      <Text size={15} weight={500} color='white'>
+        BWI
+      </Text>
+    </ActionIcon>
+  )
 
   const bodyClick = (value: string) => {
     console.log('clicked: ', value)
@@ -72,48 +95,99 @@ function App() {
 
   const cardFooter = <Text>This is a footer</Text>
 
+  const menuItems = [
+    {
+      title: 'Test Item 1',
+      onClick: () => console.log('Clicked Item 1')
+    },
+    {
+      title: 'Test Item 2',
+      onClick: () => console.log('Clicked Item 2')
+    },
+    {
+      title: 'Delete',
+      onClick: () => console.log('Clicked Delete'),
+      color: 'red'
+    }
+  ]
+
   return (
     <Container fluid>
       <Center>
+        {/* With drop Down */}
         <MainCard
-          leftIconClick={leftIconClick}
-          titleLeftIcon={titleLeftIcon}
-          title={'loooooooong'}
-          dropMenu={menu}
-          bodyLeftIcon={errorIcon}
-          handleBodyClick={bodyClick}
-          bodyText={'Looooooooong'}
+          title={'Customers'}
+          dropMenuItems={menuItems}
+          bodyClickHandler={bodyClick}
+          bodyText={'1,200'}
+          withBorder={false}
+        />
+        {/* With Right Icon*/}
+        <MainCard
+          title={'File Parsing Errors'}
+          bodyClickHandler={bodyClick}
+          bodyText={'855'}
+          bodyRightIcon={trendUpIcon}
+          withBorder={false}
+        />
+        <MainCard
+          title={'Staging Data Review'}
+          bodyClickHandler={bodyClick}
+          bodyText={'20'}
           bodyRightIcon={trendDownIcon}
+          withBorder={false}
+        />
+        {/* With Left Icon */}
+        <MainCard
+          title={'Exceptions on Tasks'}
+          bodyClickHandler={bodyClick}
+          bodyLeftIcon={errorIcon}
+          bodyText={'25'}
+          withBorder={false}
+        />
+        <MainCard
+          title={'Runners in Waiting State'}
+          bodyClickHandler={bodyClick}
+          bodyLeftIcon={warningIcon}
+          bodyText={'25'}
+          withBorder={false}
+        />
+        {/* Long header */}
+        <MainCard
+          title={'Super LOOOONG Header'}
+          bodyClickHandler={bodyClick}
+          bodyLeftIcon={warningIcon}
+          bodyText={'25'}
+          withBorder={false}
+        />
+        {/* Long Body */}
+        <MainCard
+          title={'Test Header'}
+          bodyClickHandler={bodyClick}
+          bodyText={'Super LOOOOONG Body'}
+          bodyTextSize='1rem'
+        />
+        <MainCard
+          title={'Runners in Warning State'}
+          bodyClickHandler={bodyClick}
+          bodyLeftIcon={waitingIcon}
+          bodyText={'25'}
+          withBorder={false}
+        />
+        {/* Report/Search cards */}
+        <MainCard
+          titleLeftIcon={carIcon}
+          titleRightIcon={starIcon}
+          bodyText='Cost Avoidance Report'
+          bodyTextSize='1rem'
+        />
+        <MainCard
+          titleLeftIcon={bwiIcon}
+          titleRightIcon={starIcon}
+          bodyText='BI WorldWide Invoices Report'
+          bodyTextSize='1rem'
         />
       </Center>
-      {/* <MainCard title={'This is going to be the title LONG LONG TITLE'} titleLeftIcon={titleLeftIcon} titleRightIcon={titleRightIcon} dropMenu={menu} bodyLeftIcon={errorIcon} handleBodyTextClick={bodyTextClick} bodyText={'855'} bodyRightIcon={trendDownIcon} footer={cardFooter} footerPosition='center' /> */}
-
-      {/* <Card shadow="sm" padding="lg" radius="md" withBorder>
-        <Card.Section>
-          <Image
-            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
-            height={160}
-            alt="Norway"
-          />
-        </Card.Section>
-
-        <Group position="apart" mt="md" mb="xs">
-          <Text weight={500}>Norway Fjord Adventures</Text>
-          <Badge color="pink" variant="light">
-            On Sale
-          </Badge>
-        </Group>
-
-        <Text size="sm" color="dimmed">
-          With Fjord Tours you can explore more of the magical fjord landscapes with tours and
-          activities on and around the fjords of Norway
-        </Text>
-
-        <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-          Book classic tour now
-        </Button>
-      </Card> */}
-      {/* {cards} */}
     </Container>
 
   )

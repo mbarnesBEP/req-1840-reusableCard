@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { Menu, ActionIcon } from '@mantine/core'
@@ -15,24 +15,25 @@ const waitingIcon = <FontAwesomeIcon icon={faCircleExclamation} style={{ color: 
 const bodyTextClick = (value: string) => {
   console.log('clicked: ', value)
 }
+afterEach(cleanup)
 describe('renders Generic card', () => {
   it('renders file Parsing error card', () => {
     render(<MainCard
-      title={'File Parsing Errors'}
-      handleBodyClick={bodyTextClick}
+      title={'File Parsing'}
+      bodyClickHandler={bodyTextClick}
       bodyText={'855'}
       bodyRightIcon={trendUpIcon}
     />)
-    expect(screen.getByText('File Parsing Errors')).toBeInTheDocument()
+    expect(screen.getAllByText('File Parsing')[0]).toBeInTheDocument()
     expect(screen.getByTitle('trendUpIcon')).toBeInTheDocument()
-    expect(screen.getByText('855')).toBeInTheDocument()
+    expect(screen.getAllByText('855')[0]).toBeInTheDocument()
   })
 
   it('handles click on the card body', () => {
     const handleCLick = jest.fn()
     render(<MainCard
       title={'File Parsing Errors'}
-      handleBodyClick={handleCLick}
+      bodyClickHandler={handleCLick}
       bodyText={'855'}
       bodyRightIcon={trendUpIcon}
     />)
@@ -48,7 +49,7 @@ describe('renders Generic card', () => {
   it('Has a clickable Left Icon', () => {
     const handleIconCLick = jest.fn()
     render(<MainCard
-      leftIconClick={handleIconCLick}
+      leftIconClickHandler={handleIconCLick}
       titleLeftIcon={titleLeftIcon}
       title={'File Parsing Errors'}
       // handleBodyClick={handleCLick}
@@ -60,25 +61,25 @@ describe('renders Generic card', () => {
   })
 
   it('Has drop menu', () => {
-    const menu =
-      <Menu withinPortal position="bottom-end" shadow="sm">
-        <Menu.Target>
-          <ActionIcon>
-            <FontAwesomeIcon icon={faEllipsisVertical} />
-          </ActionIcon>
-        </Menu.Target>
-        <Menu.Dropdown>
-          <Menu.Item>Test Item 1</Menu.Item>
-          <Menu.Item>Test Item 2</Menu.Item>
-          <Menu.Item color="red">
-            Delete all
-          </Menu.Item>
-        </Menu.Dropdown>
-      </Menu>
+    const menuItems = [
+      {
+        title: 'Test Item 1',
+        onClick: () => console.log('Clicked Item 1')
+      },
+      {
+        title: 'Test Item 2',
+        onClick: () => console.log('Clicked Item 2')
+      },
+      {
+        title: 'Delete',
+        onClick: () => console.log('Clicked Delete'),
+        color: 'red'
+      }
+    ]
 
     render(<MainCard
       title={'File Parsing Errors'}
-      dropMenu={menu}
+      dropMenuItems={menuItems}
       bodyText={'855'}
       bodyRightIcon={trendUpIcon}
     />)
