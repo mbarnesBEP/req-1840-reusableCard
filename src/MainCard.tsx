@@ -18,7 +18,7 @@ interface props {
   dropMenuItems?: Array<menuItemProps>
   children?: ReactElement
   bodyLeftIcon?: ReactElement
-  bodyClickHandler?: (value: string) => void
+  cardClickHandler?: (value: string) => void
   bodyText?: string
   bodyTextSize?: string
   bodyRightIcon?: ReactElement
@@ -46,7 +46,7 @@ const useStyles = createStyles(() => ({
  * @param {Array} dropMenuItems drop menu items to display in the optional drop menu
  * @param {ReactElement} children
  * @param {ReactElement} bodyLeftIcon Icon to be displayed on the left side of the body of the card
- * @param {Function} bodyClickHandler Action for when body of the card is clicked
+ * @param {Function} cardClickHandler Action for when body of the card is clicked
  * @param {string} bodyText Text to display in the card
  * @param {string} bodyTextSize Text size for body text default to 2rem
  * @param {ReactElement} bodyRightIcon Icon to be displayed on the right side of the body of the card
@@ -65,7 +65,7 @@ const MainCard = ({
   dropMenuItems,
   children,
   bodyLeftIcon,
-  bodyClickHandler,
+  cardClickHandler,
   bodyText,
   bodyTextSize = '2rem',
   bodyRightIcon,
@@ -111,9 +111,16 @@ const MainCard = ({
   }, [])
 
   return (
-    <Card radius="md" m='md' withBorder={withBorder} w={cardWidth} h={cardHeight}>
+    <Card
+      radius="md"
+      m='md'
+      withBorder={withBorder}
+      w={cardWidth}
+      h={cardHeight}
+      onClick={() => cardClickHandler && cardClickHandler('Value')}
+      className={cardClickHandler ? classes.cardValueGroup : ''}>
       <Card.Section>
-        <Group position={!title ? 'apart' : undefined} noWrap id='card-header-group' px='md' pt='md' pb='md'>
+        <Group position={!title ? 'apart' : undefined} noWrap id='card-header-group' px='md' pt={titleLeftIcon ? 'md' : '0'} pb='md'>
           {titleLeftIcon &&
             <ActionIcon component="span" mx='0px' onClick={() => leftIconClickHandler && leftIconClickHandler('value')}>
               {titleLeftIcon}
@@ -133,8 +140,7 @@ const MainCard = ({
         </Group>
       </Card.Section>
       <Card.Section
-        onClick={() => bodyClickHandler && bodyClickHandler('Value')}
-        className={classes.cardValueGroup}
+
         data-testid='card-body'>
         {children &&
           <Card.Section>

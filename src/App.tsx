@@ -40,7 +40,13 @@ const FAKEDATA = [
   }]
 
 function App() {
-  const starIcon = <FontAwesomeIcon onClick={() => console.log('clickedIcon')} data-testid='starIcon' size='lg' icon={faStar} />
+  const starIcon = (
+    <ActionIcon onClick={() => console.log('clickedIcon')} sx={{
+      '&:hover': { background: 'transparent' }
+    }}>
+      <FontAwesomeIcon data-testid='starIcon' size='lg' icon={faStar} />
+    </ActionIcon>
+  )
   const titleRightIcon = <FontAwesomeIcon icon={faCircleInfo} style={{ color: "#CF3F7C" }} />
   const trendUpIcon = <FontAwesomeIcon icon={faArrowTrendUp} style={{ color: "#6ee62d", height: '27px', width: '32px' }} />
   const trendDownIcon = <FontAwesomeIcon icon={faArrowTrendDown} style={{ color: "#DC3545", height: '27px', width: '32px' }} />
@@ -118,21 +124,20 @@ function App() {
         <MainCard
           title={'Customers'}
           dropMenuItems={menuItems}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyText={'1,200'}
-          withBorder={false}
         />
         {/* With Right Icon*/}
         <MainCard
           title={'File Parsing Errors'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyText={'855'}
           bodyRightIcon={trendUpIcon}
           withBorder={false}
         />
         <MainCard
           title={'Staging Data Review'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyText={'20'}
           bodyRightIcon={trendDownIcon}
           withBorder={false}
@@ -140,14 +145,14 @@ function App() {
         {/* With Left Icon */}
         <MainCard
           title={'Exceptions on Tasks'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyLeftIcon={errorIcon}
           bodyText={'25'}
           withBorder={false}
         />
         <MainCard
           title={'Runners in Waiting State'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyLeftIcon={warningIcon}
           bodyText={'25'}
           withBorder={false}
@@ -155,21 +160,22 @@ function App() {
         {/* Long header */}
         <MainCard
           title={'Super LOOOONG Header'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyLeftIcon={warningIcon}
           bodyText={'25'}
           withBorder={false}
         />
-        {/* Long Body */}
+        {/* Long Body & Differing card size */}
         <MainCard
           title={'Test Header'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyText={'Super LOOOOONG Body'}
           bodyTextSize='1rem'
+          cardHeight='80px'
         />
         <MainCard
           title={'Runners in Warning State'}
-          bodyClickHandler={bodyClick}
+          cardClickHandler={bodyClick}
           bodyLeftIcon={waitingIcon}
           bodyText={'25'}
           withBorder={false}

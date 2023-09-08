@@ -20,7 +20,7 @@ describe('renders Generic card', () => {
   it('renders file Parsing error card', () => {
     render(<MainCard
       title={'File Parsing'}
-      bodyClickHandler={bodyTextClick}
+      cardClickHandler={bodyTextClick}
       bodyText={'855'}
       bodyRightIcon={trendUpIcon}
     />)
@@ -33,7 +33,7 @@ describe('renders Generic card', () => {
     const handleCLick = jest.fn()
     render(<MainCard
       title={'File Parsing Errors'}
-      bodyClickHandler={handleCLick}
+      cardClickHandler={handleCLick}
       bodyText={'855'}
       bodyRightIcon={trendUpIcon}
     />)
