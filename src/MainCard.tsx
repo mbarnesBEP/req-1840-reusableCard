@@ -81,7 +81,7 @@ const MainCard = ({
   if (dropMenuItems) {
     dropMenu = (
       <Menu withinPortal position="bottom-end" shadow="sm">
-        <Menu.Target>
+        <Menu.Target >
           <ActionIcon>
             <FontAwesomeIcon icon={faEllipsisVertical} />
           </ActionIcon>
@@ -113,6 +113,9 @@ const MainCard = ({
       m='md'
       withBorder={withBorder}
       w={cardWidth}
+      maw={cardWidth}
+      //miw={cardWidth}
+      //mih={cardHeight}
       h={cardHeight}
       onClick={() => cardClickHandler && cardClickHandler('Value')}
       className={cardClickHandler ? classes.cardValueGroup : ''}>
@@ -124,9 +127,15 @@ const MainCard = ({
               <Text fz="1rem" c='dimmed' data-testid='title' truncate ref={titleRef}>{title}</Text>
             </Tooltip.Floating>
           }
-          {titleRightIcon}
+          {(!titleLeftIcon && !title) &&
+            <Card.Section ml={'auto'} px='md' py='md'>
+              {titleRightIcon}
+            </Card.Section>
+          }
+          {(titleLeftIcon || title) && <>{titleRightIcon}</>}
+
           {dropMenu &&
-            <Card.Section ml='auto'>
+            <Card.Section ml='auto' onClick={(e) => e.stopPropagation()}>
               {dropMenu}
             </Card.Section>
           }

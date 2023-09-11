@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Container, Menu, ActionIcon, Center } from '@mantine/core'
+import { Text, Container, Menu, ActionIcon, Center, SimpleGrid } from '@mantine/core'
 import './App.css'
 import MainCard from './MainCard'
 
@@ -46,7 +46,9 @@ function App() {
       alert('clicked on the star icon')
     }} sx={{
       '&:hover': { background: 'transparent' }
-    }}>
+    }}
+      mx='0px'
+    >
       <FontAwesomeIcon data-testid='starIcon' size='lg' icon={faStar} />
     </ActionIcon>
   )
@@ -133,7 +135,14 @@ function App() {
 
   return (
     <Container fluid>
-      <Center>
+      <SimpleGrid
+        cols={4}
+        breakpoints={[
+          { maxWidth: '62rem', cols: 3, spacing: 'md' },
+          { maxWidth: '48rem', cols: 2, spacing: 'sm' },
+          { maxWidth: '36rem', cols: 1, spacing: 'sm' },
+        ]}
+      >
         {/* With drop Down */}
         <MainCard
           title={'Customers'}
@@ -173,7 +182,7 @@ function App() {
         />
         {/* Long header */}
         <MainCard
-          title={'Super LOOOONG Header'}
+          title={'Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOONG Header'}
           cardClickHandler={bodyClick}
           bodyLeftIcon={warningIcon}
           bodyText={'25'}
@@ -183,7 +192,7 @@ function App() {
         <MainCard
           title={'Test Header'}
           cardClickHandler={bodyClick}
-          bodyText={'Super LOOOOONG Body'}
+          bodyText={'Super LOOOOOOOOOOOOOOOOOOOOOOOOONG Body'}
           bodyTextSize='1rem'
           cardHeight='80px'
         />
@@ -203,13 +212,13 @@ function App() {
           bodyTextSize='1rem'
         />
         <MainCard
-          titleLeftIcon={bwiIcon}
+          //titleLeftIcon={bwiIcon}
           titleRightIcon={starIcon}
           cardClickHandler={bodyClick}
           bodyText='BI WorldWide Invoices Report'
           bodyTextSize='1rem'
         />
-      </Center>
+      </SimpleGrid>
     </Container>
 
   )
