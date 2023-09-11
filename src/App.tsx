@@ -41,7 +41,10 @@ const FAKEDATA = [
 
 function App() {
   const starIcon = (
-    <ActionIcon onClick={() => alert('clicked on the star icon')} sx={{
+    <ActionIcon onClick={(e) => {
+      e.stopPropagation()
+      alert('clicked on the star icon')
+    }} sx={{
       '&:hover': { background: 'transparent' }
     }}>
       <FontAwesomeIcon data-testid='starIcon' size='lg' icon={faStar} />
@@ -75,7 +78,10 @@ function App() {
       color='red'
       radius='xl'
       size='xl'
-      onClick={() => alert('clicked on avitar icon')}
+      onClick={(e) => {
+        e.stopPropagation()
+        alert('clicked on avitar icon')
+      }}
     >
       <Text size={15} weight={500} color='white'>
         CAR
@@ -89,6 +95,12 @@ function App() {
       color='blue'
       radius='xl'
       size='xl'
+      component="span"
+      mx='0px'
+      onClick={(e) => {
+        e.stopPropagation()
+        alert('Clicked avitar icon')
+      }}
     >
       <Text size={15} weight={500} color='white'>
         BWI
@@ -204,3 +216,4 @@ function App() {
 }
 
 export default App
+//terrik99@gmail.com

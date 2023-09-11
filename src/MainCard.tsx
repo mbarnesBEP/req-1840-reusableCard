@@ -13,7 +13,6 @@ interface menuItemProps {
 interface props {
   title?: string
   titleLeftIcon?: ReactElement
-  leftIconClickHandler?: (value: string) => void
   titleRightIcon?: ReactElement
   dropMenuItems?: Array<menuItemProps>
   children?: ReactElement
@@ -41,7 +40,6 @@ const useStyles = createStyles(() => ({
  *  Reusable generic card component for Reports/Search Landing and Dashboard pages
  * @param {string} title title for the card
  * @param {ReactElement} titleLeftIcon Icon to be displayed to the left side of the title
- * @param {Function} leftIconClickHandler Action for when the left title icon is clicked 
  * @param {ReactElement} titleRightIcon Icon to be displayed to the left side of the title
  * @param {Array} dropMenuItems drop menu items to display in the optional drop menu
  * @param {ReactElement} children
@@ -60,7 +58,6 @@ const useStyles = createStyles(() => ({
 const MainCard = ({
   title,
   titleLeftIcon,
-  leftIconClickHandler,
   titleRightIcon,
   dropMenuItems,
   children,
@@ -121,11 +118,7 @@ const MainCard = ({
       className={cardClickHandler ? classes.cardValueGroup : ''}>
       <Card.Section>
         <Group position={!title ? 'apart' : undefined} noWrap id='card-header-group' px='md' pt={titleLeftIcon ? 'md' : '0'} pb='md'>
-          {titleLeftIcon &&
-            <ActionIcon component="span" mx='0px' onClick={() => leftIconClickHandler && leftIconClickHandler('value')}>
-              {titleLeftIcon}
-            </ActionIcon>
-          }
+          {titleLeftIcon}
           {title &&
             <Tooltip.Floating label={title} multiline data-testid='tooltip' color="gray" disabled={!isTitleOverFlown}>
               <Text fz="1rem" c='dimmed' data-testid='title' truncate ref={titleRef}>{title}</Text>

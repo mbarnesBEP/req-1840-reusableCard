@@ -2,7 +2,7 @@ import React from 'react'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
-import { Menu, ActionIcon } from '@mantine/core'
+import { Menu, ActionIcon, Text } from '@mantine/core'
 import MainCard from './MainCard'
 
 const titleLeftIcon = <FontAwesomeIcon data-testid='title-left-icon' icon={faStar} />
@@ -48,9 +48,25 @@ describe('renders Generic card', () => {
 
   it('Has a clickable Left Icon', () => {
     const handleIconCLick = jest.fn()
+    const carIcon = (
+      <ActionIcon
+        data-testid='title-left-icon'
+        variant='filled'
+        color='red'
+        radius='xl'
+        size='xl'
+        onClick={(e) => {
+          e.stopPropagation()
+          handleIconCLick()
+        }}
+      >
+        <Text size={15} weight={500} color='white'>
+          CAR
+        </Text>
+      </ActionIcon>
+    )
     render(<MainCard
-      leftIconClickHandler={handleIconCLick}
-      titleLeftIcon={titleLeftIcon}
+      titleLeftIcon={carIcon}
       title={'File Parsing Errors'}
       // handleBodyClick={handleCLick}
       bodyText={'855'}
