@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Container, Menu, ActionIcon, Center, SimpleGrid } from '@mantine/core'
+import { Text, Container, Menu, ActionIcon, Center, SimpleGrid, Flex } from '@mantine/core'
 import './App.css'
 import MainCard from './MainCard'
 
@@ -134,92 +134,103 @@ function App() {
   ]
 
   return (
-    <Container fluid>
-      <SimpleGrid
-        cols={4}
-        breakpoints={[
-          { maxWidth: '62rem', cols: 3, spacing: 'md' },
-          { maxWidth: '48rem', cols: 2, spacing: 'sm' },
-          { maxWidth: '36rem', cols: 1, spacing: 'sm' },
-        ]}
-      >
-        {/* With drop Down */}
-        <MainCard
-          title={'Customers'}
-          dropMenuItems={menuItems}
-          cardClickHandler={bodyClick}
-          bodyText={'1,200'}
-        />
-        {/* With Right Icon*/}
-        <MainCard
-          title={'File Parsing Errors'}
-          cardClickHandler={bodyClick}
-          bodyText={'855'}
-          bodyRightIcon={trendUpIcon}
-          withBorder={false}
-        />
-        <MainCard
-          title={'Staging Data Review'}
-          cardClickHandler={bodyClick}
-          bodyText={'20'}
-          bodyRightIcon={trendDownIcon}
-          withBorder={false}
-        />
-        {/* With Left Icon */}
-        <MainCard
-          title={'Exceptions on Tasks'}
-          cardClickHandler={bodyClick}
-          bodyLeftIcon={errorIcon}
-          bodyText={'25'}
-          withBorder={false}
-        />
-        <MainCard
-          title={'Runners in Waiting State'}
-          cardClickHandler={bodyClick}
-          bodyLeftIcon={warningIcon}
-          bodyText={'25'}
-          withBorder={false}
-        />
-        {/* Long header */}
-        <MainCard
-          title={'Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOONG Header'}
-          cardClickHandler={bodyClick}
-          bodyLeftIcon={warningIcon}
-          bodyText={'25'}
-          withBorder={false}
-        />
-        {/* Long Body & Differing card size */}
-        <MainCard
-          title={'Test Header'}
-          cardClickHandler={bodyClick}
-          bodyText={'Super LOOOOOOOOOOOOOOOOOOOOOOOOONG Body'}
-          bodyTextSize='1rem'
-          cardHeight='80px'
-        />
-        <MainCard
-          title={'Runners in Warning State'}
-          cardClickHandler={bodyClick}
-          bodyLeftIcon={waitingIcon}
-          bodyText={'25'}
-          withBorder={false}
-        />
-        {/* Report/Search cards */}
-        <MainCard
-          titleLeftIcon={carIcon}
-          titleRightIcon={starIcon}
-          cardClickHandler={bodyClick}
-          bodyText='Cost Avoidance Report'
-          bodyTextSize='1rem'
-        />
-        <MainCard
-          //titleLeftIcon={bwiIcon}
-          titleRightIcon={starIcon}
-          cardClickHandler={bodyClick}
-          bodyText='BI WorldWide Invoices Report'
-          bodyTextSize='1rem'
-        />
-      </SimpleGrid>
-    </Container>
+    <Flex
+      mih={110}
+      gap="md"
+      justify="flex-start"
+      align="flex-start"
+      direction="row"
+      wrap="wrap"
+
+    >
+      <MainCard
+        title={'Customers'}
+        dropMenuItems={menuItems}
+        cardClickHandler={bodyClick}
+        bodyText={'1,200'}
+      />
+      {/* With Right Icon*/}
+      <MainCard
+        title={'File Parsing Errors'}
+        cardClickHandler={bodyClick}
+        bodyText={'855'}
+        bodyRightIcon={trendUpIcon}
+        withBorder={false}
+      />
+      <MainCard
+        title={'Staging Data Review'}
+        cardClickHandler={bodyClick}
+        bodyText={'20'}
+        bodyRightIcon={trendDownIcon}
+        withBorder={false}
+      />
+      {/* With Left Icon */}
+      <MainCard
+        title={'Exceptions on Tasks'}
+        cardClickHandler={bodyClick}
+        bodyLeftIcon={errorIcon}
+        bodyText={'25'}
+        withBorder={false}
+      />
+      <MainCard
+        title={'Runners in Waiting State'}
+        cardClickHandler={bodyClick}
+        bodyLeftIcon={warningIcon}
+        bodyText={'25'}
+        withBorder={false}
+      />
+      {/* Long header */}
+      <MainCard
+        title={'Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOONG Header'}
+        cardClickHandler={bodyClick}
+        bodyLeftIcon={warningIcon}
+        bodyText={'25'}
+        withBorder={false}
+      />
+      {/* Long Body & Differing card size */}
+      <MainCard
+        title={'Test Header'}
+        cardClickHandler={bodyClick}
+        bodyText={'Super LOOOOOOOOOOOOOOOOOOOOOOOOONG Body'}
+        bodyTextSize='1rem'
+        cardHeight='80px'
+      />
+      <MainCard
+        title={'Runners in Warning State'}
+        cardClickHandler={bodyClick}
+        bodyLeftIcon={waitingIcon}
+        bodyText={'25'}
+        withBorder={false}
+      />
+      {/* Report/Search cards */}
+      <MainCard
+        titleLeftIcon={carIcon}
+        titleRightIcon={starIcon}
+        cardClickHandler={bodyClick}
+        bodyText='Cost Avoidance Report'
+        bodyTextSize='1rem'
+      />
+      <MainCard
+        //titleLeftIcon={bwiIcon}
+        titleRightIcon={starIcon}
+        cardClickHandler={bodyClick}
+        bodyText='BI WorldWide Invoices Report'
+        bodyTextSize='1rem'
+      />
+    </Flex>
+    // <Container fluid>
+    //   <SimpleGrid
+    //     cols={4}
+    //     breakpoints={[
+    //       { maxWidth: '62rem', cols: 3, spacing: 'md' },
+    //       { maxWidth: '48rem', cols: 2, spacing: 'sm' },
+    //       { maxWidth: '36rem', cols: 1, spacing: 'sm' },
+    //     ]}
+    //   >
+    //     {/* With drop Down */}
+
+    //   </SimpleGrid>
+    // </Container>
 
   )
 }

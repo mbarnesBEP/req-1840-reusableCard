@@ -69,7 +69,7 @@ const MainCard = ({
   footer,
   footerPosition,
   cardHeight = '110px',
-  cardWidth = '250px',
+  cardWidth = '12vw',
   withBorder = true }: props) => {
   const { classes } = useStyles()
   const titleRef = useRef<null | HTMLDivElement>(null)
@@ -107,15 +107,16 @@ const MainCard = ({
     }
   }, [])
 
+  const minW = '180px'
+  const maxW = '250px'
   return (
     <Card
       radius="md"
       m='md'
       withBorder={withBorder}
       w={cardWidth}
-      maw={cardWidth}
-      //miw={cardWidth}
-      //mih={cardHeight}
+      maw='250px'
+      miw='180px'
       h={cardHeight}
       onClick={() => cardClickHandler && cardClickHandler('Value')}
       className={cardClickHandler ? classes.cardValueGroup : ''}>
