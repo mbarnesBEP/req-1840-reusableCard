@@ -107,12 +107,11 @@ const MainCard = ({
     }
   }, [])
 
-  const minW = '180px'
-  const maxW = '250px'
+
   return (
     <Card
       radius="md"
-      m='md'
+      m='xs'
       withBorder={withBorder}
       w={cardWidth}
       maw='250px'

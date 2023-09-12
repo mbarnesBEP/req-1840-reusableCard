@@ -136,7 +136,7 @@ function App() {
   return (
     <Flex
       mih={110}
-      gap="md"
+      gap="xs"
       justify="flex-start"
       align="flex-start"
       direction="row"
