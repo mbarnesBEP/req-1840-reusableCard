@@ -1,7 +1,8 @@
 import React from 'react'
-import { Text, Container, Menu, ActionIcon, Center, SimpleGrid, Flex } from '@mantine/core'
+import { Text, Box, Container, Menu, ActionIcon, Center, SimpleGrid, Flex } from '@mantine/core'
 import './App.css'
 import MainCard from './MainCard'
+import DistributorProductView from './DistributorProductView'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
@@ -133,91 +134,192 @@ function App() {
     }
   ]
 
+  const distProdView = true
+  const mainCardView = false
   return (
-    <Flex
-      mih={110}
-      gap="xs"
-      justify="flex-start"
-      align="flex-start"
-      direction="row"
-      wrap="wrap"
 
-    >
-      <MainCard
-        title={'Customers'}
-        dropMenuItems={menuItems}
-        cardClickHandler={bodyClick}
-        bodyText={'1,200'}
-      />
-      {/* With Right Icon*/}
-      <MainCard
-        title={'File Parsing Errors'}
-        cardClickHandler={bodyClick}
-        bodyText={'855'}
-        bodyRightIcon={trendUpIcon}
-        withBorder={false}
-      />
-      <MainCard
-        title={'Staging Data Review'}
-        cardClickHandler={bodyClick}
-        bodyText={'20'}
-        bodyRightIcon={trendDownIcon}
-        withBorder={false}
-      />
-      {/* With Left Icon */}
-      <MainCard
-        title={'Exceptions on Tasks'}
-        cardClickHandler={bodyClick}
-        bodyLeftIcon={errorIcon}
-        bodyText={'25'}
-        withBorder={false}
-      />
-      <MainCard
-        title={'Runners in Waiting State'}
-        cardClickHandler={bodyClick}
-        bodyLeftIcon={warningIcon}
-        bodyText={'25'}
-        withBorder={false}
-      />
-      {/* Long header */}
-      <MainCard
-        title={'Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOONG Header'}
-        cardClickHandler={bodyClick}
-        bodyLeftIcon={warningIcon}
-        bodyText={'25'}
-        withBorder={false}
-      />
-      {/* Long Body & Differing card size */}
-      <MainCard
-        title={'Test Header'}
-        cardClickHandler={bodyClick}
-        bodyText={'Super LOOOOOOOOOOOOOOOOOOOOOOOOONG Body'}
-        bodyTextSize='1rem'
-        cardHeight='80px'
-      />
-      <MainCard
-        title={'Runners in Warning State'}
-        cardClickHandler={bodyClick}
-        bodyLeftIcon={waitingIcon}
-        bodyText={'25'}
-        withBorder={false}
-      />
-      {/* Report/Search cards */}
-      <MainCard
-        titleLeftIcon={carIcon}
-        titleRightIcon={starIcon}
-        cardClickHandler={bodyClick}
-        bodyText='Cost Avoidance Report'
-        bodyTextSize='1rem'
-      />
-      <MainCard
-        //titleLeftIcon={bwiIcon}
-        titleRightIcon={starIcon}
-        cardClickHandler={bodyClick}
-        bodyText='BI WorldWide Invoices Report'
-        bodyTextSize='1rem'
-      />
-    </Flex>
+    <Box >
+      {distProdView &&
+        <DistributorProductView
+          minWidth='550px'
+          maxWidth='1034px'
+        />
+      }
+      {mainCardView &&
+        <Flex
+          mih={110}
+          gap="xs"
+          justify="flex-start"
+          align="flex-start"
+          direction="row"
+          wrap="wrap"
+
+        >
+          <MainCard
+            title={'Customers'}
+            dropMenuItems={menuItems}
+            cardClickHandler={bodyClick}
+            bodyText={'1,200'}
+          />
+          {/* With Right Icon*/}
+          <MainCard
+            title={'File Parsing Errors'}
+            cardClickHandler={bodyClick}
+            bodyText={'855'}
+            bodyRightIcon={trendUpIcon}
+            withBorder={false}
+          />
+          <MainCard
+            title={'Staging Data Review'}
+            cardClickHandler={bodyClick}
+            bodyText={'20'}
+            bodyRightIcon={trendDownIcon}
+            withBorder={false}
+          />
+          {/* With Left Icon */}
+          <MainCard
+            title={'Exceptions on Tasks'}
+            cardClickHandler={bodyClick}
+            bodyLeftIcon={errorIcon}
+            bodyText={'25'}
+            withBorder={false}
+          />
+          <MainCard
+            title={'Runners in Waiting State'}
+            cardClickHandler={bodyClick}
+            bodyLeftIcon={warningIcon}
+            bodyText={'25'}
+            withBorder={false}
+          />
+          {/* Long header */}
+          <MainCard
+            title={'Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOONG Header'}
+            cardClickHandler={bodyClick}
+            bodyLeftIcon={warningIcon}
+            bodyText={'25'}
+            withBorder={false}
+          />
+          {/* Long Body & Differing card size */}
+          <MainCard
+            title={'Test Header'}
+            cardClickHandler={bodyClick}
+            bodyText={'Super LOOOOOOOOOOOOOOOOOOOOOOOOONG Body'}
+            bodyTextSize='1rem'
+            cardHeight='80px'
+          />
+          <MainCard
+            title={'Runners in Warning State'}
+            cardClickHandler={bodyClick}
+            bodyLeftIcon={waitingIcon}
+            bodyText={'25'}
+            withBorder={false}
+          />
+          {/* Report/Search cards */}
+          <MainCard
+            titleLeftIcon={carIcon}
+            titleRightIcon={starIcon}
+            cardClickHandler={bodyClick}
+            bodyText='Cost Avoidance Report'
+            bodyTextSize='1rem'
+          />
+          <MainCard
+            //titleLeftIcon={bwiIcon}
+            titleRightIcon={starIcon}
+            cardClickHandler={bodyClick}
+            bodyText='BI WorldWide Invoices Report'
+            bodyTextSize='1rem'
+          />
+        </Flex>
+      }
+    </Box>
+    // <Flex
+    //   mih={110}
+    //   gap="xs"
+    //   justify="flex-start"
+    //   align="flex-start"
+    //   direction="row"
+    //   wrap="wrap"
+
+    // >
+    //   <MainCard
+    //     title={'Customers'}
+    //     dropMenuItems={menuItems}
+    //     cardClickHandler={bodyClick}
+    //     bodyText={'1,200'}
+    //   />
+    //   {/* With Right Icon*/}
+    //   <MainCard
+    //     title={'File Parsing Errors'}
+    //     cardClickHandler={bodyClick}
+    //     bodyText={'855'}
+    //     bodyRightIcon={trendUpIcon}
+    //     withBorder={false}
+    //   />
+    //   <MainCard
+    //     title={'Staging Data Review'}
+    //     cardClickHandler={bodyClick}
+    //     bodyText={'20'}
+    //     bodyRightIcon={trendDownIcon}
+    //     withBorder={false}
+    //   />
+    //   {/* With Left Icon */}
+    //   <MainCard
+    //     title={'Exceptions on Tasks'}
+    //     cardClickHandler={bodyClick}
+    //     bodyLeftIcon={errorIcon}
+    //     bodyText={'25'}
+    //     withBorder={false}
+    //   />
+    //   <MainCard
+    //     title={'Runners in Waiting State'}
+    //     cardClickHandler={bodyClick}
+    //     bodyLeftIcon={warningIcon}
+    //     bodyText={'25'}
+    //     withBorder={false}
+    //   />
+    //   {/* Long header */}
+    //   <MainCard
+    //     title={'Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOONG Header'}
+    //     cardClickHandler={bodyClick}
+    //     bodyLeftIcon={warningIcon}
+    //     bodyText={'25'}
+    //     withBorder={false}
+    //   />
+    //   {/* Long Body & Differing card size */}
+    //   <MainCard
+    //     title={'Test Header'}
+    //     cardClickHandler={bodyClick}
+    //     bodyText={'Super LOOOOOOOOOOOOOOOOOOOOOOOOONG Body'}
+    //     bodyTextSize='1rem'
+    //     cardHeight='80px'
+    //   />
+    //   <MainCard
+    //     title={'Runners in Warning State'}
+    //     cardClickHandler={bodyClick}
+    //     bodyLeftIcon={waitingIcon}
+    //     bodyText={'25'}
+    //     withBorder={false}
+    //   />
+    //   {/* Report/Search cards */}
+    //   <MainCard
+    //     titleLeftIcon={carIcon}
+    //     titleRightIcon={starIcon}
+    //     cardClickHandler={bodyClick}
+    //     bodyText='Cost Avoidance Report'
+    //     bodyTextSize='1rem'
+    //   />
+    //   <MainCard
+    //     //titleLeftIcon={bwiIcon}
+    //     titleRightIcon={starIcon}
+    //     cardClickHandler={bodyClick}
+    //     bodyText='BI WorldWide Invoices Report'
+    //     bodyTextSize='1rem'
+    //   />
+    // </Flex>
+    // <Center>
+    //   <DistributorProductView />
+
+    // </Center>
     // <Container fluid>
     //   <SimpleGrid
     //     cols={4}
