@@ -39,11 +39,12 @@ const ViewHeader = ({ titleText }: titleProps) => {
         <Button
           leftIcon={<FontAwesomeIcon icon={faMagnifyingGlassArrowRight} />} variant="outline"
           className={classes.searchBtn}
+          onClick={() => alert('clicked search button')}
         >
           Find Invoices
         </Button>
         <Divider orientation="vertical" />
-        <Button className={classes.saveBtn}>
+        <Button className={classes.saveBtn} onClick={() => alert('clicked saved button')}>
           <FontAwesomeIcon icon={faFloppyDisk} />
         </Button>
       </Group>
