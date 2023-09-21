@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Box, Container, Menu, ActionIcon, Center, SimpleGrid, Flex } from '@mantine/core'
+import { Text, Box, Card, Menu, ActionIcon, Center, Container, Flex, ScrollArea } from '@mantine/core'
 import './App.css'
 import MainCard from './MainCard'
 import DistributorProductView from './DistributorProductView'
@@ -7,6 +7,7 @@ import DistributorProductView from './DistributorProductView'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { AdaptiveWrapper } from './AdaptiveWrapper'
 
 const FAKEDATA = [
   {
@@ -134,16 +135,89 @@ function App() {
     }
   ]
 
+  const PlaceHolder = ({ PlaceHolderText, height }: any) => {
+    console.log('height', height)
+    return (
+
+      < Container>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+      </Container >
+    )
+  }
+
+  const PlaceHolder2 = ({ PlaceHolderText, height }: any) => {
+    console.log('height', height)
+    return (
+
+      < Container>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+        <Text>{PlaceHolderText}</Text>
+      </Container >
+    )
+  }
+
   const distProdView = true
   const mainCardView = false
   return (
 
-    <Box >
+    <Box h={'calc(100vh - 14px)'} >
       {distProdView &&
-        <DistributorProductView
-          minWidth='550px'
-          maxWidth='1034px'
-        />
+
+        <ScrollArea.Autosize id='scrollView' mah='95vh'>
+
+          <DistributorProductView
+            title="Distributor product - DMID: 123456789"
+            minWidth='550px'
+            maxWidth='1034px'
+            section1={<PlaceHolder PlaceHolderText='Place Holder 1' />}
+            section2={<PlaceHolder2 PlaceHolderText='Place Holder 2' />}
+            section3={<PlaceHolder PlaceHolderText='Place Holder 3' />}
+            section4={<PlaceHolder PlaceHolderText='Place Holder 4' />}
+
+          />
+        </ScrollArea.Autosize>
+
       }
       {mainCardView &&
         <Flex

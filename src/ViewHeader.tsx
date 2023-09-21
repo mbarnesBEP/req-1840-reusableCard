@@ -26,12 +26,13 @@ const useStyles = createStyles((theme: any) => ({
 
 interface titleProps {
   titleText: string
+  aRef: any
 }
 
-const ViewHeader = ({ titleText }: titleProps) => {
+const ViewHeader = ({ titleText, aRef }: titleProps) => {
   const { classes } = useStyles()
   return (
-    <Group noWrap>
+    <Group noWrap ref={aRef}>
       <Text fz="xl" fw={700}>
         {titleText}
       </Text>
