@@ -10,6 +10,7 @@ import "allotment/dist/style.css"
 
 interface distProdViewProps {
   title: string,
+  headerButtonText: string,
   minWidth?: string,
   maxWidth?: string,
   topGroupHeight?: string,
@@ -21,6 +22,7 @@ interface distProdViewProps {
 
 const DistributorProductView = ({
   title,
+  headerButtonText,
   minWidth = '550px',
   maxWidth = '1034px',
   topGroupHeight = '400px',
@@ -36,7 +38,7 @@ const DistributorProductView = ({
 
     <Box maw={maxWidth} miw={minWidth} mx={'md'}>
       <Box typeof="span" >
-        <ViewHeader titleText={title} />
+        <ViewHeader titleText={title} headerButtonText={headerButtonText} />
       </Box>
       <Group grow mt={'md'}>
         <ScrollArea h={topGroupHeight}>

@@ -25,10 +25,11 @@ const useStyles = createStyles((theme: any) => ({
 }))
 
 interface titleProps {
-  titleText: string
+  titleText: string,
+  headerButtonText: string
 }
 
-const ViewHeader = ({ titleText }: titleProps) => {
+const ViewHeader = ({ titleText, headerButtonText }: titleProps) => {
   const { classes } = useStyles()
   return (
     <Group noWrap>
@@ -41,7 +42,7 @@ const ViewHeader = ({ titleText }: titleProps) => {
           className={classes.searchBtn}
           onClick={() => alert('clicked search button')}
         >
-          Find Invoices
+          {headerButtonText}
         </Button>
         <Divider orientation="vertical" />
         <Button className={classes.saveBtn} onClick={() => alert('clicked saved button')}>

@@ -208,6 +208,7 @@ function App() {
 
           <DistributorProductView
             title="Distributor product - DMID: 123456789"
+            headerButtonText="Find Invoices"
             minWidth='550px'
             maxWidth='1034px'
             section1={<PlaceHolder PlaceHolderText='Place Holder 1' />}
