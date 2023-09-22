@@ -31,27 +31,14 @@ const DistributorProductView = ({
 
 }: distProdViewProps) => {
   const lowerSectionHeight = (`calc((98vh - ${topGroupHeight}) /2)`)
-  console.log('height2', lowerSectionHeight)
-  const areaRef = useRef<any>()
 
-  // useLayoutEffect(() => {
-  //   if (!areaRef.current) return
-  //   if (!areaRef.current.parentElement) return
-  //   const groupH = areaRef.current.clientHeight
-  //   const parH = areaRef.current.parentElement.clientHeight
-
-  //   const topH = parH - groupH
-  //   console.log('topH', topH)
-  //   // setTopG(`${topH}px`)
-  //   setHeight(`calc((100vh - ${topH}) /2)`)
-  // }, [areaRef.current])
   return (
 
     <Box maw={maxWidth} miw={minWidth} mx={'md'}>
       <Box typeof="span" >
-        <ViewHeader titleText={title} aRef={areaRef} />
+        <ViewHeader titleText={title} />
       </Box>
-      <Group grow mt={'md'} ref={areaRef}>
+      <Group grow mt={'md'}>
         <ScrollArea h={topGroupHeight}>
           <Card h={topGroupHeight} shadow="sm" withBorder>
             {section1}
