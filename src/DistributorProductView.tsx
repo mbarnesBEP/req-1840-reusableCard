@@ -1,19 +1,18 @@
 import React, { useRef, ReactElement, useLayoutEffect, useState } from "react"
 import ViewHeader from "./ViewHeader"
-import { Card, Grid, Text, Box, ScrollArea, Group } from '@mantine/core'
-import { withResizeDetector } from 'react-resize-detector'
-import { Allotment } from "allotment"
-import "allotment/dist/style.css"
+import { Box, Group, Stack } from '@mantine/core'
+
 
 // Just a temp place holder for the section components to come later
 
 
 interface distProdViewProps {
+  width: any,
+  height: any,
   title: string,
   headerButtonText: string,
   minWidth?: string,
-  maxWidth?: string,
-  topGroupHeight?: string,
+  topGroupHeight?: string | number | any,
   section1: ReactElement,
   section2: ReactElement,
   section3: ReactElement,
@@ -21,68 +20,61 @@ interface distProdViewProps {
 }
 
 const DistributorProductView = ({
+  width,
+  height,
   title,
   headerButtonText,
-  minWidth = '550px',
-  maxWidth = '1034px',
-  topGroupHeight = '400px',
+  minWidth = '450px',
+  topGroupHeight = 450,
   section1,
   section2,
   section3,
   section4
 
 }: distProdViewProps) => {
-  const lowerSectionHeight = (`calc((98vh - ${topGroupHeight}) /2)`)
+  const HEADER_HEIGHT = 100
+  const lowerSectionHeight = (height - topGroupHeight - HEADER_HEIGHT) / 2 - 10
+
+  const BoxComp = ({ height, minHeight, children }: any) => (
+    <Box
+      h={height}
+      mih={minHeight}
+      sx={() => ({
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        background: '#a395ee',
+        border: '1px solid gray',
+        boxShadow: '0px 1px 4px 0',
+        borderRadius: 5
+      })}
+    >
+      {children}
+    </Box>
+  )
 
   return (
 
-    <Box maw={maxWidth} miw={minWidth} mx={'md'}>
+    <Box maw={width} miw={minWidth} mx={'md'} h={height} my={'sm'}>
       <Box typeof="span" >
         <ViewHeader titleText={title} headerButtonText={headerButtonText} />
       </Box>
-      <Group grow mt={'md'}>
-        <ScrollArea h={topGroupHeight}>
-          <Card h={topGroupHeight} shadow="sm" withBorder>
-            {section1}
-          </Card>
-        </ScrollArea>
-        <Card h={topGroupHeight} shadow="sm" withBorder p={'lg'}>
+      <Group grow my={'md'}>
+        <BoxComp height={topGroupHeight}>
+          {section1}
+        </BoxComp>
+        <BoxComp height={topGroupHeight}>
           {section2}
-        </Card>
+        </BoxComp>
       </Group>
-      <Group py={'md'} grow>
-        <Card h={lowerSectionHeight} shadow="sm" withBorder mx='auto'>
-          <ScrollArea.Autosize mah={lowerSectionHeight}>
-            {section3}
-          </ScrollArea.Autosize>
-        </Card>
-      </Group>
-      <Group grow>
-        <Card h={lowerSectionHeight} shadow="sm" withBorder>
+      <Stack>
+        <BoxComp height={lowerSectionHeight} minHeight={100}>
+          {section3}
+        </BoxComp>
+        <BoxComp height={lowerSectionHeight} minHeight={100}>
           {section4}
-        </Card>
-      </Group>
+        </BoxComp>
+      </Stack>
     </Box>
-
-    // <ScrollArea maw={maxWidth} miw={minWidth} id='scrollView' >
-    //   <Box w='98%' p='10px' >
-    //     <ViewHeader titleText="Distributor product - DMID: 123456789" />
-    //     <Grid gutter={'sm'} gutterXs={'sm'} grow h={'calc(100vh - 14px)'}>
-    //       <Grid.Col span={6} mt='md'>
-    //         <PlaceHolder PlaceHolderText='Product Details place holder' />
-    //       </Grid.Col>
-    //       <Grid.Col span={6} mt='md'>
-    //         <PlaceHolder PlaceHolderText='Pack Parsing Status place holder' />
-    //       </Grid.Col>
-    //       <Grid.Col>
-    //         <PlaceHolder PlaceHolderText='Import Data Place Holder' />
-    //       </Grid.Col>
-    //       <Grid.Col>
-    //         <PlaceHolder PlaceHolderText='Purchased By Place Holder' />
-    //       </Grid.Col>
-    //     </Grid>
-    //   </Box>
-    // </ScrollArea>
   )
 }
 export default DistributorProductView

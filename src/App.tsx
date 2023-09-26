@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faEllipsisVertical, faArrowTrendUp, faArrowTrendDown, faTriangleExclamation, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
 import { AdaptiveWrapper } from './AdaptiveWrapper'
+import { AdaptiveContainer } from './ContentWrapper'
+import ProductView from './ProductView'
 
 const FAKEDATA = [
   {
@@ -199,25 +201,46 @@ function App() {
 
   const distProdView = true
   const mainCardView = false
+  const contentWrapper = true
+
+  const fakeDataGenerator = (size: number) =>
+    [...Array(size)].map(() => {
+      const randomStr = '1234567890abcdefghijklmnopqrstuvwxyz/?<>*&%$#@'
+        .split('')
+        .sort(() => 0.5 - Math.random())
+        .join('')
+      return <Text>{randomStr.slice(0, Math.random() * 46 + 2)}</Text>
+    })
+  const data = fakeDataGenerator(40)
   return (
 
-    <Box h={'calc(100vh - 14px)'} >
+    <Box className='container' >
+      {/* <Box className='header' />
+      <AdaptiveContainer>
+        <ProductView data={data} />
+      </AdaptiveContainer> */}
+      {/* <Box className='footer' /> */}
+
       {distProdView &&
 
-        <ScrollArea.Autosize id='scrollView' mah='95vh'>
+        // <ScrollArea.Autosize id='scrollView' mah='95vh'>
+        <>
+          <Box className='header' />
+          <AdaptiveContainer>
 
-          <DistributorProductView
-            title="Distributor product - DMID: 123456789"
-            headerButtonText="Find Invoices"
-            minWidth='550px'
-            maxWidth='1034px'
-            section1={<PlaceHolder PlaceHolderText='Place Holder 1' />}
-            section2={<PlaceHolder2 PlaceHolderText='Place Holder 2' />}
-            section3={<PlaceHolder PlaceHolderText='Place Holder 3' />}
-            section4={<PlaceHolder PlaceHolderText='Place Holder 4' />}
-
-          />
-        </ScrollArea.Autosize>
+            <DistributorProductView
+              width
+              height
+              title="Distributor product - DMID: 123456789"
+              headerButtonText="Find Invoices"
+              minWidth='550px'
+              section1={<PlaceHolder PlaceHolderText='Place Holder 1' />}
+              section2={<PlaceHolder2 PlaceHolderText='Place Holder 2' />}
+              section3={<PlaceHolder PlaceHolderText='Place Holder 3' />}
+              section4={<PlaceHolder PlaceHolderText='Place Holder 4' />} />
+          </AdaptiveContainer>
+        </>
+        // </ScrollArea.Autosize>
 
       }
       {mainCardView &&
