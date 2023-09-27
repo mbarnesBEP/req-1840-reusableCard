@@ -4,7 +4,7 @@ import { Box, Group, Stack, Text } from '@mantine/core'
 import InformationCard from './InformationCard'
 import LoremIpsum from "./LoremIpsum"
 
-const data = LoremIpsum()
+const data = LoremIpsum(40)
 
 interface distProdViewProps {
   width?: number,
@@ -72,18 +72,18 @@ const DistributorProductView = ({
       </Box>
       <Group grow my={'md'}>
         <BoxComp height={(topGroupHeight + addTopHeight)}>
-          <InformationCard title="Product Information" data={data} />
+          <InformationCard title="Product Information" data={LoremIpsum(40)} />
         </BoxComp>
         <BoxComp height={(topGroupHeight + addTopHeight)}>
-          <InformationCard title="Manufacturer Product Information" data={data} />
+          <InformationCard title="Manufacturer Product Information" data={LoremIpsum(400)} />
         </BoxComp>
       </Group>
       <Stack>
         <BoxComp height={section3Height}>
-          <InformationCard title="Import Data" opened={section3Open} setOpen={setSec3Open} buttons={buttons} data={data} />
+          <InformationCard title="Import Data" opened={section3Open} setOpen={setSec3Open} buttons={buttons} data={LoremIpsum(100)} />
         </BoxComp>
         <BoxComp height={section4Height}>
-          <InformationCard title="Purchased By" opened={section4Open} setOpen={setSec4Open} data={data} />
+          <InformationCard title="Purchased By" opened={section4Open} setOpen={setSec4Open} data={LoremIpsum(75)} />
         </BoxComp>
       </Stack>
     </Box>
