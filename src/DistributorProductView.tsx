@@ -72,7 +72,7 @@ const DistributorProductView = ({
       </Box>
       <Group grow my={'md'}>
         <BoxComp height={(topGroupHeight + addTopHeight)}>
-          <InformationCard title="Product Information" data={LoremIpsum(40)} />
+          <InformationCard title="Product Information" data={LoremIpsum(10)} />
         </BoxComp>
         <BoxComp height={(topGroupHeight + addTopHeight)}>
           <InformationCard title="Manufacturer Product Information" data={LoremIpsum(400)} />
