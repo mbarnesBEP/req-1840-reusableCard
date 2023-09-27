@@ -137,67 +137,7 @@ function App() {
     }
   ]
 
-  const PlaceHolder = ({ PlaceHolderText, height }: any) => {
-    console.log('height', height)
-    return (
 
-      < Container>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-      </Container >
-    )
-  }
-
-  const PlaceHolder2 = ({ PlaceHolderText, height }: any) => {
-    console.log('height', height)
-    return (
-
-      < Container>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-        <Text>{PlaceHolderText}</Text>
-      </Container >
-    )
-  }
 
   const distProdView = true
   const mainCardView = false
@@ -227,17 +167,11 @@ function App() {
         <>
           <Box className='header' />
           <AdaptiveContainer>
-
             <DistributorProductView
-              width
-              height
               title="Distributor product - DMID: 123456789"
               headerButtonText="Find Invoices"
               minWidth='550px'
-              section1={<PlaceHolder PlaceHolderText='Place Holder 1' />}
-              section2={<PlaceHolder2 PlaceHolderText='Place Holder 2' />}
-              section3={<PlaceHolder PlaceHolderText='Place Holder 3' />}
-              section4={<PlaceHolder PlaceHolderText='Place Holder 4' />} />
+            />
           </AdaptiveContainer>
         </>
         // </ScrollArea.Autosize>

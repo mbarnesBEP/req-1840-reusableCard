@@ -1,0 +1,17 @@
+import { Text } from '@mantine/core'
+
+const LoremIpsum = () => (
+  <Text>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra pharetra auctor. Curabitur augue lectus, rutrum eget pellentesque vitae, dictum ac dui. In convallis augue at sapien gravida, ornare aliquet tellus mattis. Curabitur pharetra pellentesque nibh. Proin justo elit, dapibus vel eros ut, rutrum pulvinar massa. Duis ligula mi, varius ac mauris vel, euismod tempor leo. Sed cursus auctor laoreet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae aliquam quam, tempus gravida massa. Donec tristique nulla vel mauris interdum feugiat. Quisque vestibulum, risus accumsan tristique interdum, ipsum odio tincidunt nisi, ut convallis nibh mi eu tellus. Fusce blandit scelerisque mi sit amet eleifend.
+
+    Sed nec nisl lorem. Quisque non ligula non arcu bibendum aliquam in vitae dolor. Vestibulum lacinia, sem ac aliquet aliquet, ipsum tellus vehicula tortor, eu viverra ligula sapien nec neque. Phasellus in odio in nibh tincidunt commodo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum sed enim pellentesque, porttitor ligula quis, mollis neque. Integer justo massa, euismod sit amet tempus et, vehicula quis tellus. Pellentesque aliquet convallis risus quis elementum. Aliquam erat volutpat. Duis malesuada tincidunt ante, at consectetur diam hendrerit nec. Mauris ornare tempus tellus id pretium. Integer at auctor nisi. Aenean feugiat maximus sagittis. Donec tincidunt mi ante, quis blandit mauris facilisis nec.
+
+    Nulla finibus faucibus purus, ut elementum lectus pellentesque eget. Quisque luctus consectetur felis, sed condimentum nulla consectetur ut. Vestibulum lacus mi, elementum sit amet blandit a, tristique vel nisl. Vestibulum cursus est justo. Integer pretium nunc arcu. Nunc pharetra, sem at efficitur convallis, metus sem pulvinar mauris, id vehicula enim turpis ac justo. Morbi urna mauris, scelerisque quis eros vitae, imperdiet commodo sem. Mauris aliquam pulvinar libero, eget pellentesque augue posuere nec. Sed laoreet id enim ac rhoncus. In in ipsum odio. Fusce metus dui, lobortis a purus non, molestie auctor lacus. Nulla facilisi.
+
+    Vivamus ullamcorper ornare justo, eu placerat orci varius at. Nam rhoncus egestas orci, id commodo arcu tincidunt eget. Proin ut lectus turpis. Sed et ipsum dictum, posuere est eu, placerat sem. Quisque vel ultrices nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam in imperdiet magna, ac vulputate turpis. Nulla a lectus magna. Aenean ac venenatis ipsum. Vivamus id consequat ipsum, ut pretium erat. Maecenas ipsum mi, ultricies et neque ac, faucibus venenatis quam. Aenean tincidunt pharetra ipsum, a sollicitudin sem molestie vel. Vestibulum mattis egestas diam nec suscipit. Proin maximus luctus gravida. Praesent volutpat, elit vitae convallis semper, dolor velit tincidunt ipsum, sit amet interdum metus urna a magna. Nam congue tortor et commodo vehicula.
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non metus ipsum. Sed sed suscipit sem, in viverra tellus. Aenean accumsan ex sed vehicula eleifend. Duis at metus purus. Donec fringilla sollicitudin sollicitudin. Suspendisse tortor felis, volutpat eu mollis sit amet, luctus porttitor ligula. Sed nec eros at magna placerat varius. Phasellus eu nulla in dui pellentesque dignissim. Aenean quis facilisis risus, sed varius augue. Nullam id pulvinar ligula, sed ornare enim.
+  </Text>
+)
+
+export default LoremIpsum
